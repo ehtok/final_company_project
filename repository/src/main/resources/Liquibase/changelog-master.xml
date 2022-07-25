@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <include file="Liquibase/v-1.0/29-05-2022-create-database.xml"></include>
+    <include file="Liquibase/v-1.0/29-05-2022-create-test-data.xml"></include>
+    <include file="Liquibase/v-1.0/20-06-2022-create-table-user.xml"></include>
+</databaseChangeLog>
