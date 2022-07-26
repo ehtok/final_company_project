@@ -56,9 +56,7 @@ public class Constants {
     public static final String COMPANY_COURSES_TO_URL = "company_courses";
     public static final String ASC = "ASC";
     public static final String DESC = "DESC";
-
     public static final String HOME_URL = "/home";
-
     public static final String COURSE_URL = "/course";
     public static final String COURSE_NAME_PARAM = "name";
     public static final String DEFAULT_VALUE_NAME = "";
@@ -97,4 +95,27 @@ public class Constants {
     public static final String VACANCIES_GET_MAPPING = "/vacancies";
     public static final String TO_URL_USER_VACANCIES = "user_vacancies";
     public static final String TO_URL_USER_INFO = "user_info";
+    public static final String VACANCY_URL = "/vacancy";
+    public static final String VALUE_PARAM = "value";
+    public static final String DEFAULT_VALUE_PARAM = "";
+    public static final String TO_URL_VACANCY = "vacancy";
+    public static final String VACANCY_ATT = "vacancy";
+    public static final String STATUS_ATT = "status";
+    public static final String WORKING_TIME_ATT = "workingTime";
+    public static final String PROFESSION_LEVEL_ATT = "professionLevel";
+    public static final String ENGLISH_LEVEL_ATT = "englishLevel";
+    public static final String TECH_ATT = "tech";
+    public static final String TO_URL_NEW_VACANCY = "new_vacancy";
+    public static final String REDIRECT_VACANCY = "redirect:/vacancy";
+    public static final String TO_URL_UPDATE_VACANCY = "update_vacancy";
+    public static final String TO_URL_INFO_VACANCY = "info_vacancy";
+    public static final String USERS_ID_GET_MAPPING = "/users/{id}";
+    public static final String USERS_ATT = "users";
+    public static final String TO_URL_VACANCY_USERS = "vacancy_users";
+    public static final String ACTIVE_ATT = "active";
+    public static final String COURSES_REMOVE_ID_GET_MAPPING = "/courses/remove/{id}";
+    public static final String VACANCIES_REMOVE_ID_GET_MAPPING = "/vacancies/remove/{id}";
+    public static final String REDIRECT_USER_COURSES = "redirect:/user/courses";
+    public static final String REDIRECT_USER_VACANCIES = "redirect:/user/vacancies";
+
 }

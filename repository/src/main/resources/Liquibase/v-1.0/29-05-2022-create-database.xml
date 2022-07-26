@@ -41,7 +41,7 @@
                 constraint vacancy_pk
                     primary key (id),
                 constraint vacancy_company_fk
-                    foreign key (company_id) references company (id) ON DELETE SET NULL
+                    foreign key (company_id) references company (id)
 
             )
         </sql>

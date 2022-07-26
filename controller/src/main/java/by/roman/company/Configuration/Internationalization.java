@@ -16,7 +16,6 @@ import static by.roman.company.Constants.Constants.LOCALE_RU;
 @Configuration
 public class Internationalization implements WebMvcConfigurer {
 
-
     @Bean
     public LocaleResolver localeResolver() {
         CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();

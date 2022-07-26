@@ -2,6 +2,7 @@ package by.roman.company.Controller;
 
 import by.roman.company.DTO.CompanyDTO;
 import by.roman.company.DTO.CourseDTO;
+import by.roman.company.DTO.UserDTO;
 import by.roman.company.Enum.LocationEnum;
 import by.roman.company.Service.CompanyService;
 import by.roman.company.Service.CourseService;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static by.roman.company.Constants.Constants.*;
 
@@ -92,7 +94,6 @@ public class CourseController {
     public String addVacancyToUser(@PathVariable(value = ID) Integer id) {
         courseService.addUserToCourse(id);
         return REDIRECT_COURSE;
-
     }
 
     @GetMapping(REMOVE_ID_GET_MAPPING)
@@ -115,6 +116,15 @@ public class CourseController {
     public String infoVacancy(@PathVariable(value = ID) Integer id, Model model) {
         model.addAttribute(COURSE_ATT, courseService.findCourseById(id));
         return TO_URL_INFO_COURSE;
+    }
+
+    @GetMapping(USERS_ID_GET_MAPPING)
+    public String findAllUsers(@PathVariable(value = ID) Integer id, Model model) {
+        List<UserDTO> users = courseService.findAllUserInCourse
+                (courseService.findCourseById(Optional.ofNullable(id).orElse(null)));
+
+        model.addAttribute(USERS_ATT, users);
+        return "course_users";
     }
 
 }

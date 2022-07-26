@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/html"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title th:text="#{button.user.courses}"></title>
+    <meta charset="UTF-8"/>
+    <title th:text="#{title.page.welcome}"></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-expand bg-primary">
@@ -59,42 +59,11 @@
     </div>
 
 </nav>
-
-
-<div align="center">
-    <h3 th:text="#{button.course.list}"></h3>
-    <table class="table">
-        <thead class="table-light">
-        <th scope="col" th:text="#{col.course.name}">
-        </th>
-        <th scope="col" th:text="#{col.course.start}">
-        </th>
-        <th scope="col" th:text="#{col.course.finish}">
-        </th>
-        <th scope="col" th:text="#{col.course.location}">
-        </th>
-        <th scope="col" th:text="#{col.vacancy.company}">
-        </th>
-        <th scope="col" th:text="#{col.action}"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="course :${courses}">
-            <td th:text="${course.name}"></td>
-            <td th:text="${course.dateStart}"></td>
-            <td th:text="${course.dateFinish}"></td>
-            <td th:text="${course.location.value}"></td>
-            <td th:text="${course.companyName}"></td>
-            <td>
-                <div sec:authorize="hasAnyAuthority('USER','SUPER')">
-                    <a th:if="${course.user.contains(user)==true}"
-                       th:href="@{/user/courses/remove/{id}(id=${course.id})}"
-                       class="btn btn-outline-primary" th:text="#{button.remove.to.user}"></a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div>
+    <center>
+        <h1 th:text="#{error.h1.ops}"></h1>
+        <p th:text="#{error.message.vacancy}"/>
+    </center>
 </div>
 <a class="btn btn-outline-primary" onclick="javascript:history.back(); return false"
    th:text="#{button.back}"></a>

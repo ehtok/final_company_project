@@ -21,7 +21,7 @@
             <a class="nav-item nav-link" th:href="@{/company}" th:text="#{button.company.list}"></a>
             <a class="nav-item nav-link" th:href="@{/vacancy}" th:text="#{button.vacancy.list}"></a>
             <a class="nav-item nav-link" th:href="@{/course}" th:text="#{button.course.list}"></a>
-            <div sec:authorize="hasAnyAuthority('ADMIN')">
+            <div sec:authorize="hasAnyAuthority('ADMIN','SUPER')">
                 <a class="nav-item nav-link" th:href="@{/technology}" th:text="#{button.technology.list}"></a>
             </div>
         </div>
@@ -40,8 +40,10 @@
             <div class="dropdown-menu dropdown-menu-end">
                 <a th:href="@{/user}" class="dropdown-item" th:text="#{button.info.user}"></a>
                 <a th:href="@{/user/update}" class="dropdown-item" th:text="#{button.edit.user}"></a>
-                <a th:href="@{/user/courses}" class="dropdown-item" th:text="#{button.user.courses}"></a>
-                <a th:href="@{/user/vacancies}" class="dropdown-item" th:text="#{button.user.vacancies}"></a>
+                <a sec:authorize="hasAnyAuthority('USER','SUPER')" th:href="@{/user/courses}" class="dropdown-item"
+                   th:text="#{button.user.courses}"></a>
+                <a sec:authorize="hasAnyAuthority('USER','SUPER')" th:href="@{/user/vacancies}" class="dropdown-item"
+                   th:text="#{button.user.vacancies}"></a>
                 <div class="dropdown-divider"></div>
                 <form class="dropdown-item" th:action="@{/logout}" method="post">
                     <button class="dropdown-item" th:text="#{button.logout}"/>
@@ -115,7 +117,7 @@
         <tbody>
         <tr th:each="vacancy:${vacancies}">
             <td>
-                <a target="_blank" th:href="@{/vacancy/info/{id} (id=${vacancy.id})}"
+                <a th:href="@{/vacancy/info/{id} (id=${vacancy.id})}"
                    th:text="${vacancy.name}"></a>
             </td>
             <td th:text="${vacancy.status.value}"></td>
@@ -128,16 +130,17 @@
             <td th:text="${vacancy.companyName}">
             </td>
             <td>
-                <a th:href="@{vacancy/users/{id}(id=${vacancy.id})}" class="btn btn-outline-primary"
+                <a sec:authorize="hasAnyAuthority('ADMIN','SUPER')" th:href="@{vacancy/users/{id}(id=${vacancy.id})}"
+                   class="btn btn-outline-primary"
                    th:text="#{title.vacancy.with.user}"></a>
-                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/vacancy/update/{id}(id=${vacancy.id})}"
+                <a sec:authorize="hasAnyAuthority('ADMIN','SUPER')" th:href="@{/vacancy/update/{id}(id=${vacancy.id})}"
                    class="btn btn-outline-primary"
                    th:text="#{button.edit}"></a>
                 <a sec:authorize="hasAnyAuthority('SUPER')" th:href="@{/vacancy/delete/{id}(id=${vacancy.id})}"
                    class="btn btn-outline-primary"
                    th:text="#{button.delete}"></a>
 
-                <div sec:authorize="hasAnyAuthority('USER')">
+                <div th:if="${vacancy.status}==${active}" sec:authorize="hasAnyAuthority('USER','SUPER')">
                     <a th:if="${vacancy.user.contains(user)==false}" th:href="@{/vacancy/add/{id}(id=${vacancy.id})}"
                        class="btn btn-outline-primary" th:text="#{button.add}"></a>
                     <a th:if="${vacancy.user.contains(user)==true}" th:href="@{/vacancy/remove/{id}(id=${vacancy.id})}"
@@ -156,43 +159,41 @@
 
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage > 1}"
-                   th:href="@{'/vacancy?page=1&sortField='+${sortField}+'&sortDir=' + ${sortDir}}"
+                   th:href="@{'/vacancy?value='+${value}+'&page=1&sortField='+${sortField}+'&sortDir=' + ${sortDir}}"
                    th:text="#{button.page.first}"></a>
                 <span class="page-link" th:unless="${currentPage > 1}" th:text="#{button.page.first}"></span>
             </li>
 
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage > 1}"
-                   th:href="@{'/vacancy?page=' + ${currentPage - 1}
+                   th:href="@{'/vacancy?value='+${value}+'&page=' + ${currentPage - 1}
                    +'?sortField='+${sortField}+'&sortDir=' + ${sortDir}}" th:text="#{button.page.previous}"></a>
                 <span class="page-link" th:unless="${currentPage > 1}" th:text="#{button.page.previous}"></span>
             </li>
 
             <li class="page-link">
                     <span th:each="i :${#numbers.sequence(1,totalPage)}">
-                    <a th:href="@{'/vacancy?page=' + ${i}+ '&sortField='+${sortField}+'&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                    <a th:href="@{'/vacancy?value='+${value}+'&page=' + ${i}+ '&sortField='+${sortField}+'&sortDir=' + ${sortDir}}">[[${i}]]</a>
                     </span>
             </li>
 
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage < totalPage}"
-                   th:href="@{'/vacancy?page='+${currentPage + 1}+'&sortField='+${sortField}+'&sortDir=' + ${sortDir}}"
+                   th:href="@{'/vacancy?value='+${value}+'&page='+${currentPage + 1}+'&sortField='+${sortField}+'&sortDir=' + ${sortDir}}"
                    th:text="#{button.page.next}"></a>
                 <span class="page-link" th:unless="${currentPage < totalPage}" th:text="#{button.page.next}"></span>
             </li>
 
             <li class="page-item">
                 <a class="page-link" th:if="${currentPage < totalPage}"
-                   th:href="@{'/vacancy?page='+${totalPage}+'&sortField='+${sortField}+'&sortDir=' + ${sortDir}}"
+                   th:href="@{'/vacancy?value='+${value}+'&page='+${totalPage}+'&sortField='+${sortField}+'&sortDir=' + ${sortDir}}"
                    th:text="#{button.page.last}"></a>
                 <span class="page-link" th:unless="${currentPage < totalPage}" th:text="#{button.page.last}"></span>
             </li>
         </ul>
     </nav>
+
 </footer>
-<div>
-    <a class="btn btn-outline-primary" th:href="@{'?locale=en_US'}" th:text="#{lang.en}"></a>
-    <a class="btn btn-outline-primary" th:href="@{'?locale=ru_RU'}" th:text="#{lang.ru}"></a>
-</div>
+
 </body>
 </html>

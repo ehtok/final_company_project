@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(TO_HOME_URL, REGISTRATION_URL).permitAll()
-                .antMatchers(UPDATE_ACCESS, NEW_ACCESS, TECHNOLOGY_URL).hasAnyAuthority(ROLE_ADMIN, "SUPER")
+                .antMatchers(UPDATE_ACCESS, NEW_ACCESS, TECHNOLOGY_URL).hasAnyAuthority(ROLE_ADMIN, ROLE_SUPER)
                 .antMatchers(DELETE_ACCESS).hasAnyAuthority(ROLE_SUPER)
                 .anyRequest().authenticated()
                 .and()

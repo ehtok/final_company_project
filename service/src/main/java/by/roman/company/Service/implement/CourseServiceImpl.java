@@ -2,6 +2,7 @@ package by.roman.company.Service.implement;
 
 import by.roman.company.Converter.Converter;
 import by.roman.company.Converter.implement.CourseConverterImpl;
+import by.roman.company.Converter.implement.UserConverterImpl;
 import by.roman.company.DTO.CourseDTO;
 import by.roman.company.DTO.UserDTO;
 import by.roman.company.Entity.Course;
@@ -17,7 +18,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static by.roman.company.Service.Constant.ONE;
@@ -30,6 +30,8 @@ public class CourseServiceImpl implements CourseService {
 
     private final UserRepository userRepository;
     private final Converter<Course, CourseDTO> converter = new CourseConverterImpl();
+
+    private final Converter<User, UserDTO> userConverter = new UserConverterImpl();
 
     @Override
     public List<CourseDTO> findAllCourses() {
@@ -57,7 +59,7 @@ public class CourseServiceImpl implements CourseService {
              int pageSize, String name) {
         Sort sort = Sort.Direction.ASC.name().equalsIgnoreCase(direction) ?
                 Sort.by(field).ascending() : Sort.by(field).descending();
-        Page<Course> courses = courseRepository.findCoursesByName(name,PageRequest.of(pageNumber - ONE, pageSize, sort));
+        Page<Course> courses = courseRepository.findCoursesByName(name, PageRequest.of(pageNumber - ONE, pageSize, sort));
         return courses.map(converter::toDTO);
     }
 
@@ -81,7 +83,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<UserDTO> findAllUserInCourse(CourseDTO course) {
-        return null;
+        return userConverter.toListDTO(userRepository.findByCourses(converter.toEntity(course)));
     }
 
 }

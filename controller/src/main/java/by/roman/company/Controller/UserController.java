@@ -23,8 +23,8 @@ import static by.roman.company.Constants.Constants.*;
 @RequiredArgsConstructor
 @RequestMapping(USER_URL)
 public class UserController {
-    private final UserService userService;
 
+    private final UserService userService;
 
     @GetMapping
     public String user(Model model) {
@@ -69,7 +69,18 @@ public class UserController {
         UserDTO user = userService.userInfo(Optional.ofNullable(id).orElse(null));
         model.addAttribute(USER_ATT, user);
         return TO_URL_USER_INFO;
+    }
 
+    @GetMapping(COURSES_REMOVE_ID_GET_MAPPING)
+    public String removeCourse(@PathVariable(ID) Integer id) {
+        userService.removeUserToCourse(id);
+        return REDIRECT_USER_COURSES;
+    }
+
+    @GetMapping(VACANCIES_REMOVE_ID_GET_MAPPING)
+    public String removeVacancy(@PathVariable(ID) Integer id) {
+        userService.removeUserToVacancy(id);
+        return REDIRECT_USER_VACANCIES;
     }
 
 }

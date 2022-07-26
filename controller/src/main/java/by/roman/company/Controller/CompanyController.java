@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static by.roman.company.Constants.Constants.*;
 
@@ -64,8 +65,14 @@ public class CompanyController {
 
     @GetMapping(DELETE_ID_GET_MAPPING)
     public String deleteCompany(@PathVariable(value = ID) Integer id) {
-        companyService.deleteCompany(id);
-        return REDIRECT_COMPANY_URL;
+        String page;
+        try {
+            companyService.deleteCompany(id);
+            page = REDIRECT_COMPANY_URL;
+        } catch (Exception e) {
+            page = "companyError";
+        }
+        return page;
     }
 
     @PostMapping
@@ -101,4 +108,5 @@ public class CompanyController {
         model.addAttribute(COURSES_ATT, courses);
         return COMPANY_COURSES_TO_URL;
     }
+
 }

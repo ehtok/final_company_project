@@ -22,7 +22,7 @@ public class VacancyConverterImpl implements Converter<Vacancy, VacancyDTO> {
                 .salary(vacancy.getSalary().toString())
                 .status(vacancy.getStatus())
                 .companyName(vacancy.getCompany() == null ? null : vacancy.getCompany().getName())
-                .technology(vacancy.getTechnologies().stream().map(Technology::getName).collect(Collectors.joining(",")))
+                .technology(vacancy.getTechnologies().stream().map(Technology::getName).collect(Collectors.joining(", ")))
                 .location(vacancy.getLocation())
                 .technologies(vacancy.getTechnologies())
                 .user(vacancy.getUsers())

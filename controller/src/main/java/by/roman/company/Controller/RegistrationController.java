@@ -28,6 +28,8 @@ public class RegistrationController {
     @GetMapping
     public String newUser(User user, Model model) {
         model.addAttribute(USER_ATT, user);
+        model.addAttribute("company", Role.ADMIN);
+        model.addAttribute("users", Role.USER);
         return TO_URL_REGISTRATION;
     }
 
@@ -38,7 +40,6 @@ public class RegistrationController {
             return TO_URL_REGISTRATION;
         } else {
             user.setActive(true);
-            user.setRoles(Collections.singleton(Role.USER));
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userService.saveUser(user);
 

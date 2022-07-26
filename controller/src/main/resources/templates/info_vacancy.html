@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/html"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -21,7 +21,7 @@
             <a class="nav-item nav-link" th:href="@{/company}" th:text="#{button.company.list}"></a>
             <a class="nav-item nav-link" th:href="@{/vacancy}" th:text="#{button.vacancy.list}"></a>
             <a class="nav-item nav-link" th:href="@{/course}" th:text="#{button.course.list}"></a>
-            <div sec:authorize="hasAnyAuthority('ADMIN')">
+            <div sec:authorize="hasAnyAuthority('ADMIN','SUPER')">
                 <a class="nav-item nav-link" th:href="@{/technology}" th:text="#{button.technology.list}"></a>
             </div>
         </div>
@@ -40,8 +40,10 @@
             <div class="dropdown-menu dropdown-menu-end">
                 <a th:href="@{/user}" class="dropdown-item" th:text="#{button.info.user}"></a>
                 <a th:href="@{/user/update}" class="dropdown-item" th:text="#{button.edit.user}"></a>
-                <a th:href="@{/user/courses}" class="dropdown-item" th:text="#{button.user.courses}"></a>
-                <a th:href="@{/user/vacancies}" class="dropdown-item" th:text="#{button.user.vacancies}"></a>
+                <a sec:authorize="hasAnyAuthority('USER','SUPER')" th:href="@{/user/courses}" class="dropdown-item"
+                   th:text="#{button.user.courses}"></a>
+                <a sec:authorize="hasAnyAuthority('USER','SUPER')" th:href="@{/user/vacancies}" class="dropdown-item"
+                   th:text="#{button.user.vacancies}"></a>
                 <div class="dropdown-divider"></div>
                 <form class="dropdown-item" th:action="@{/logout}" method="post">
                     <button class="dropdown-item" th:text="#{button.logout}"/>
@@ -118,12 +120,9 @@
                 <p th:text="${vacancy.salary}"></p>
             </div>
         </div>
-
     </form>
 </div>
-<div>
-    <a class="btn btn-outline-primary" th:href="@{'?locale=en_US'}" th:text="#{lang.en}"></a>
-    <a class="btn btn-outline-primary" th:href="@{'?locale=ru_RU'}" th:text="#{lang.ru}"></a>
-</div>
+<a class="btn btn-outline-primary" onclick="javascript:history.back(); return false" th:text="#{button.back}"></a>
+
 </body>
 </html>

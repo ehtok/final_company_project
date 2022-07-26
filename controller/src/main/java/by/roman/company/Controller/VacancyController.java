@@ -9,6 +9,7 @@ import by.roman.company.Service.TechnologyService;
 import by.roman.company.Service.UserService;
 import by.roman.company.Service.VacancyService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.boot.spi.InFlightMetadataCollector;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,25 +24,9 @@ import static by.roman.company.Constants.Constants.*;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(VacancyController.VACANCY_URL)
+@RequestMapping(VACANCY_URL)
 public class VacancyController {
-    public static final String VACANCY_URL = "/vacancy";
-    public static final String VALUE_PARAM = "value";
-    public static final String DEFAULT_VALUE_PARAM = "";
-    public static final String TO_URL_VACANCY = "vacancy";
-    public static final String VACANCY_ATT = "vacancy";
-    public static final String STATUS_ATT = "status";
-    public static final String WORKING_TIME_ATT = "workingTime";
-    public static final String PROFESSION_LEVEL_ATT = "professionLevel";
-    public static final String ENGLISH_LEVEL_ATT = "englishLevel";
-    public static final String TECH_ATT = "tech";
-    public static final String TO_URL_NEW_VACANCY = "new_vacancy";
-    public static final String REDIRECT_VACANCY = "redirect:/vacancy";
-    public static final String TO_URL_UPDATE_VACANCY = "update_vacancy";
-    public static final String TO_URL_INFO_VACANCY = "info_vacancy";
-    public static final String USERS_ID_GET_MAPPING = "/users/{id}";
-    public static final String USERS_ATT = "users";
-    public static final String TO_URL_VACANCY_USERS = "vacancy_users";
+
     private final VacancyService vacancyService;
     private final CompanyService companyService;
     private final TechnologyService technologyService;
@@ -62,7 +47,6 @@ public class VacancyController {
                                 int size,
                                 @RequestParam(value = VALUE_PARAM, required = false, defaultValue = DEFAULT_VALUE_PARAM)
                                 String value) {
-
         Page<VacancyDTO> page =
                 vacancyService.findVacancyByValueWithSortAndPagination(field, sortDir, currentPage, size, value);
         int totalPages = page.getTotalPages();
@@ -72,6 +56,7 @@ public class VacancyController {
         model.addAttribute(CURRENT_PAGE_ATT, currentPage);
         model.addAttribute(TOTAL_PAGE_ATT, totalPages);
         model.addAttribute(SORT_FIELD_PARAM, field);
+        model.addAttribute(ACTIVE_ATT, StatusEnum.ACTIVE);
         model.addAttribute(VALUE_PARAM, value);
         model.addAttribute(SORT_DIRECTION_PARAM, sortDir);
         model.addAttribute(REVERSE_SORT_DIR_ATT, Sort.Direction.ASC.name().equals(sortDir) ? DESC : ASC);
@@ -101,10 +86,17 @@ public class VacancyController {
         return REDIRECT_VACANCY;
     }
 
+
     @GetMapping(DELETE_ID_GET_MAPPING)
     public String deleteVacancy(@PathVariable(value = ID) Integer id) {
-        vacancyService.deleteVacancy(Optional.ofNullable(id).orElse(null));
-        return REDIRECT_VACANCY;
+        String page;
+        try {
+            vacancyService.deleteVacancy(Optional.ofNullable(id).orElse(null));
+            page=REDIRECT_VACANCY;
+        }catch (Exception e){
+            page= "vacancyError";
+        }
+        return page;
     }
 
 

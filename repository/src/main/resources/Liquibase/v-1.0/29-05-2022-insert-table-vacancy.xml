@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+
+    <changeSet id="7" author="Roman_Yaskevich" context="test">
+        <sql>
+            insert into vacancy(vacancy_name, working_time, experience, english_level,
+                                profession_level, salary, status, vacancy_location, company_id)
+            values ('Java Developer', 'FULL', '2 года', 'B1', 'MIDDLE', 1000, 'ACTIVE', 'MINSK', 1),
+                   ('C# Developer', 'REMOTE', '3 года', 'C1', 'JUNIOR', 1000, 'ACTIVE', 'GRODNO', 1),
+                   ('QA Engineer', 'PART', '1 год', 'C1', 'JUNIOR', 700, 'OFF', 'VITEBSK', 2),
+                   ('Solution Architect', 'REMOTE', '5 лет', 'A2', 'SENIOR', 700, 'ACTIVE', 'BREST', 4),
+                   ('PHP Developer', 'PART', '2 года', 'B1', 'MIDDLE', 900, 'ACTIVE', 'MINSK', 4),
+                   ('iOS developer', 'FULL', '2 года', 'B1', 'MIDDLE', 500, 'OFF', 'MOGILEV', 5),
+                   ('Full Stack Web Developer', 'FULL', '3 года', 'B1', 'MIDDLE', 1000, 'OFF', 'MINSK', 5),
+                   ('Java Developer', 'FULL', '5 лет', 'B2', 'SENIOR', 1500, 'ACTIVE', 'MINSK', 5),
+                   ('DevOps Engineer', 'REMOTE', '3 года', 'B1', 'SENIOR', 800, 'ACTIVE', 'GRODNO', 6),
+                   ('QA automation', 'FULL', '5 лет', 'B2', 'LEAD', 1800, 'ACTIVE', 'GRODNO', 6),
+                   ('Business Solutions Consultant', 'REMOTE', '1 год', 'C2', 'MIDDLE', 500, 'OFF', 'MINSK', 7),
+                   ('Python Developer', 'FULL', '3 года', 'A2', 'MIDDLE', 800, 'OFF', 'BREST', 7),
+                   ('Unity Developer', 'PART', '3 года', 'A1', 'SENIOR', 4000, 'ACTIVE', 'MINSK', 8),
+                   ('Web Analyst', 'PART', '2 года', 'B2', 'MIDDLE', 2000, 'ACTIVE', 'VITEBSK', 8),
+                   ('Project Manager', 'FULL', '3 года', 'B2', 'MIDDLE', 1500, 'ACTIVE', 'MINSK', 9),
+                   ('Ruby developer', 'FULL', '5 лет', 'C1', 'SENIOR', 6000, 'ACTIVE', 'GOMEL', 10)
+        </sql>
+    </changeSet>
+</databaseChangeLog>

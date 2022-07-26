@@ -18,7 +18,7 @@
                 email            varchar(255) null,
                 phone_number     varchar(255) null,
                 active           bit(1) not null,
-                user_description varchar(255) null,
+                user_description varchar(2000) null,
                 constraint user_pk
                     primary key (id)
             )

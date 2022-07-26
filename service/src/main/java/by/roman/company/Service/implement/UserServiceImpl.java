@@ -7,13 +7,17 @@ import by.roman.company.Converter.implement.VacancyConverterImpl;
 import by.roman.company.DTO.CourseDTO;
 import by.roman.company.DTO.UserDTO;
 import by.roman.company.DTO.VacancyDTO;
+import by.roman.company.Entity.Course;
 import by.roman.company.Entity.User;
+import by.roman.company.Entity.Vacancy;
 import by.roman.company.Repository.CourseRepository;
 import by.roman.company.Repository.UserRepository;
 import by.roman.company.Repository.VacancyRepository;
 import by.roman.company.Service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,8 +27,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final CourseRepository courseRepository;
     private final VacancyRepository vacancyRepository;
-    private Converter courseConverter = new CourseConverterImpl();
-    private Converter vacancyConverter = new VacancyConverterImpl();
+    private Converter<Course, CourseDTO> courseConverter = new CourseConverterImpl();
+    private Converter<Vacancy, VacancyDTO> vacancyConverter = new VacancyConverterImpl();
     private Converter<User, UserDTO> userConverter = new UserConverterImpl();
 
 
@@ -52,6 +56,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO userInfo(Integer id) {
         return userConverter.toDTO(userRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public void removeUserToVacancy(Integer id) {
+        VacancyDTO vacancy = vacancyConverter.toDTO(vacancyRepository.findById(id).orElse(null));
+        User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        user.getVacancies().remove(vacancyConverter.toEntity(vacancy));
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void removeUserToCourse(Integer id) {
+        CourseDTO course = courseConverter.toDTO(courseRepository.findById(id).orElse(null));
+        User user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        user.getCourses().remove(courseConverter.toEntity(course));
+        userRepository.save(user);
     }
 
 

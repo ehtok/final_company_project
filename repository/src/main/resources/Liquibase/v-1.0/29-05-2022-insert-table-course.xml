@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="8" author="Roman_Yaskevich" context="test">
+        <sql>
+            insert into course(course_name, finish_date, start_date, course_description, course_location, id_company)
+            values ('Java Core', '22.03.2021', '02.05.2021',
+                    'Java — универсальный язык программирования общего назначения, который применяется для создания кроссплатформенных приложений. Не имеет значения, какую платформу вы используете — web, mobile, desktop — Java будет отвечать запросам и потребностям. Более того, это очень популярный язык, который неизменно появляется в топе мировых рейтингов PYPL, TIOBE и IEEE.',
+                    'MINSK', 1),
+                   ('UI/UX design', '01.08.22', '10.11.22',
+                    'Принято говорить, что труднее всего сделать первый шаг. Но самый сложный шаг в любом деле — второй. Многие начинающие дизайнеры, набравшись базовых знаний, задумываются, в каком направлении им развиваться дальше. Важнейший навык, без которого на этом этапе не обойтись — понимать пользователя и какие дизайн-решения ему предлагать.',
+                    'BREST', 3),
+                   ('Android basics in Kotlin', '18.09.2022', '05.12.2022',
+                    'In this course, you’ll learn the basics of building Android apps with the Kotlin programming language. Along the way, you’ll develop a collection of apps to start your journey as an Android developer.',
+                    'GRODNO', 5),
+                   ('Learn Vue.js', '08.08.2022', '10.10.2022',
+                    'Modern web apps require increasingly complicated front-ends that can handle large amounts of user interactions and dynamic data. For example, Instagram has over 95 million new posts added per day. Front-end frameworks are JavaScript libraries that make it easy to write the code to create and display this enormous amount of data.',
+                    'MINSK', 8)
+        </sql>
+    </changeSet>
+</databaseChangeLog>

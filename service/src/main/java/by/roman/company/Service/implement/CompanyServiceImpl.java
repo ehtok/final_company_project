@@ -45,6 +45,11 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public List<CompanyDTO> findAll() {
+        return companyConverter.toListDTO(companyRepository.findAll());
+    }
+
+    @Override
     public Page<CompanyDTO> findCompanyByNamePaginationAndSort
             (String name, String field, String direction, int pageNumber, int pageSize) {
         Sort sort = Sort.Direction.ASC.name().equalsIgnoreCase(direction) ?

@@ -18,5 +18,7 @@ public interface UserService {
 
     UserDTO userInfo(Integer id);
 
+    void removeUserToVacancy(Integer id);
 
+    void removeUserToCourse(Integer id);
 }
