@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="6" author="Roman_Yaskevich" context="test">
+        <sql>
+            insert into company(company_name, company_site, company_mail, company_size, company_type,
+                                company_description)
+            values ('100SOFT', 'https://100soft.by/', 'sd@100soft.by', '100', 'IT',
+                    'Компания 100Soft является резидентом парка высоких технологий, специализируется на разработке решений для среднего и крупного бизнеса в сегменте оптовой и розничной торговли и логистики (b2b, b2c). Специализация на продуктах Microsoft Dynamics и 1C, собственная платформа Web-portal.'),
+                   ('Firedome', 'https://firedome.io/', 'alex.hlyavich@firedome.io', '42', 'STARTUP',
+                    'Firedome - это амбициозный стартап с офисами в Израиле, США и Минске, созданный в 2018 году  ведущими израильскими специалистами по кибер-безопасности. Минский офис был открыт в январе 2020 года, пока он небольшой, молодой и уютный, но в скором времени планируется сделать его центром разработки компании.'),
+                   ('BGaming', 'https://www.bgaming.com/', 'info@bgaming.com', '50', 'OUTSOURCING',
+                    'BGaming — быстрорастущий игровой провайдер с беларусскими корнями,предлагающий качественные продукты для онлайн-казино по всему миру.'),
+                   ('Brightgrove', 'https://www.brightgrove.com/', 'nzapolskaya@brightgrove.com', '300', 'OUTSOURCING',
+                    'We are a team of more than 300 IT professionals, based in Minsk, Belarus and Kharkiv, Ukraine. We are extremely technically talented and passionate for our technologies, which is dictated by our highly competitive IT market.'),
+                   ('EPAM', 'https://www.epam.com/', 'info@epam.com', '47850', 'IT',
+                    'Основанная в 1993 году компания EPAM Systems Inc. (NYSE: EPAM) сегодня является ведущим мировым поставщиком услуг по разработке программного обеспечения и цифровых платформ. Президент компании и председатель совета директоров — Аркадий Добкин.'),
+                   ('IdeaSoft', 'https://i-deasoft.com/', 'hr@i-deasoft.com', '10', 'OUTSOURCING',
+                    'Кампанія IdeaSoft LLC пастаўляе паслугі ў сферы праектавання, распрацоўкі і падтрымкі праграмнага забеспячэння на тэрыторыі Заходняй Еўропы, Паўночнай Амерыкі, Аўстраліі.'),
+                   ('IGROTEK', 'http://www.igro-tek.com', 'job@igro-tek.com', '60', 'GAME', 'Компания «IGRO TEK» является белорусским центром разработки игровых проектов Mail.ru Group (My.Games).
+Мы участвуем в разработке успешных продуктов, предназначенных для оперирования на одном из крупнейших сегментов игрового рынка − рынке компьютерных PC-игр и консолей. Преимуществами наших продуктов являются захватывающие сценарии, великолепная Hi-End - графика и новые игровые механики, позволяющие игрокам погрузиться в игру с головой.'),
+                   ('Indigo Bunting', 'https://indigobunting.net/', 'm@indigobunting.net', '5', 'GAME',
+                    'Компания-разработчик игр. Основана в октябре 2014 года.'),
+                   ('Innowise Group', 'https://innowise-group.com/', 'contact@innowise-group.com', '1000',
+                    'OUTSOURCING',
+                    'Innowise Group – одна из наиболее опытных беларуских компаний в области полного цикла разработки, внедрения и поддержки ПО, бизнес-анализа, дизайна, тестирования и управления проектами.'),
+                   ('Intellectsoft', 'https://www.intellectsoft.net/', 'www.intellectsoft.net', '300', 'MOBILE',
+                    'Intellectsoft is a boutique IT solution provider headquartered in Palo Alto, CA. Our mission is to help global organizations overcome technology challenges of Digital Transformation. Established in 2007, the company operates multiple offices and engineering centers in the US, the UK, the Nordic region and Eastern Europe. Our main focus is on the new and emerging technologies, such as Cognitive Computing, Decentralized Applications, Internet-of-Things and Mixed Reality. Our service portfolio includes strategic IT consulting, CX design, development and full lifecycle management of custom products and applications.')
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="1" author="Roman_Yaskevich">
+        <comment>Create table company</comment>
+        <sql>
+            create table company
+            (
+                id                  int auto_increment not null,
+                company_name        varchar(255) null,
+                company_size        int null,
+                company_site        varchar(255) null,
+                company_mail        varchar(255) null,
+                company_type        varchar(255) null,
+                company_description varchar(1000) null,
+                constraint company_pk
+                    primary key (id)
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="Roman_Yaskevich">
+        <comment>Create table vacancy</comment>
+        <sql>
+            create table vacancy
+            (
+                id               int auto_increment not null,
+                vacancy_name     varchar(255) null,
+                working_time     varchar(255) null,
+                experience       varchar(255) null,
+                english_level    varchar(255) null,
+                profession_level varchar(255) null,
+                salary           int null,
+                status           varchar(255) null,
+                vacancy_location varchar(255) null,
+                company_id       int null,
+                constraint vacancy_pk
+                    primary key (id),
+                constraint vacancy_company_fk
+                    foreign key (company_id) references company (id)
+
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="Roman_Yaskevcih">
+        <comment>Create table course</comment>
+        <sql>
+            create table course
+            (
+                id                 int auto_increment not null,
+                course_name        varchar(255) null,
+                start_date         date null,
+                finish_date        date null,
+                course_description varchar(1000) null,
+                course_location    varchar(255) null,
+                id_company         int null,
+                constraint course_pk
+                    primary key (id),
+                constraint course_company_fk
+                    foreign key (id_company) references company (id) ON DELETE SET NULL
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="Roman_Yaskevich">
+        <comment>Create table technology</comment>
+        <sql>
+            create table technology
+            (
+                id              int auto_increment not null,
+                technology_name varchar(255) null,
+                constraint technology_pk
+                    primary key (id)
+            )
+        </sql>
+    </changeSet>
+
+    <changeSet id="5" author="Roman_Yaskevich">
+        <comment>Create table technology_vacancy</comment>
+        <sql>
+            create table technology_vacancy
+            (
+                id_vacancy    int not null,
+                id_technology int not null,
+                constraint vacancy_technology_fk
+                    foreign key (id_vacancy) references vacancy (id),
+                constraint technology_vacancy_fk
+                    foreign key (id_technology) references technology (id)
+
+
+            )
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="15" author="Roman_Yaskevich" context="test">
+        <sql>
+            insert into user(username, password, user_name, user_surname, email, phone_number, active, user_description)
+            values ('user', '$2a$10$W1L49fAQDqZAPGpgwygqjOXwW5ocp57JEQ4tA5PfikWq5g/g5NoLe', 'Андрей', 'Игнатьев',
+                    'ignatiev@mail.ru', '+3753365421', true,
+                    'Skilled Java Developer with proven expertise in delivering large-scale software products. An impeccable knowledge and skills of creating distributed, robust and scalable server-side applications.  Experienced in the use of CQRS, Event Sourcing, Domain-Driven Design for real-world high-loaded projects. Always focused on goals and delivering success to rapidly evolving and dynamic environments.'),
+                   ('user1', '$2a$10$W1L49fAQDqZAPGpgwygqjOXwW5ocp57JEQ4tA5PfikWq5g/g5NoLe', 'Amanda', 'Taylor',
+                    'amanda.taylor@ssss.com', '+3752312313', true,
+                    'Personable tech support representative with 4+ years of experience analyzing issues with drone hardware and software. Achieved company-hight retention rate of 99.32% Seeking to ignite career with the team at Inter Drones'),
+                   ('user2', '$2a$10$W1L49fAQDqZAPGpgwygqjOXwW5ocp57JEQ4tA5PfikWq5g/g5NoLe', 'Jason', 'Stull',
+                    'jason.stull@22.com', '+759235482', true,
+                    'I am an enthusiastic and detail-oriented Frontend Software Engineer seeking an entry-level position with Company to use my skills in coding, troubleshooting complex problems, and assisting in the timely completion of projects.'),
+                   ('admin', '$2a$10$W1L49fAQDqZAPGpgwygqjOXwW5ocp57JEQ4tA5PfikWq5g/g5NoLe', 'admin', 'admin',
+                    'admin@admin.ru', '+9999999', true, 'admin'),
+                   ('super', '$2a$10$W1L49fAQDqZAPGpgwygqjOXwW5ocp57JEQ4tA5PfikWq5g/g5NoLe', 'super', 'super',
+                    'super@super.ru', '+22222222', true, 'super')
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="16" author="Roman_Yaskevich" context="test">
+        <sql>
+            insert into user_role(user_id, roles)
+            values (1, 'USER'),
+                   (2, 'USER'),
+                   (3, 'USER'),
+                   (4, 'ADMIN'),
+                   (5, 'SUPER')
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

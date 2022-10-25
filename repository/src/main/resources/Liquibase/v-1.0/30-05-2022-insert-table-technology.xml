@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="9" author="Roman_Yaskevich" context="test">
+        <sql>
+            insert into technology(technology_name)
+            values ('Hibernate'),
+                   ('Java Core'),
+                   ('Spring Boot'),
+                   ('Git'),
+                   ('SQL'),
+                   ('Ruby'),
+                   ('Crystal'),
+                   ('RabbitMQ'),
+                   ('Kubernetes'),
+                   ('PostgreSQL'),
+                   ('Redis'),
+                   ('Kafka'),
+                   ('PHP'),
+                   ('laravel'),
+                   ('swift'),
+                   ('docker'),
+                   ('css3'),
+                   ('html5'),
+                   ('reactjs'),
+                   ('c++'),
+                   ('linux'),
+                   ('vue.js'),
+                   ('python'),
+                   ('c#'),
+                   ('unity3d'),
+                   ('unity ui'),
+                   ('javascript')
+        </sql>
+    </changeSet>
+</databaseChangeLog>
